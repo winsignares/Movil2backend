@@ -5,3 +5,5 @@
 5) activate.bat
 6) cd ..
 7) cd ..
+8) pip install flask flask-sqlalchemy flask-marshmallow marshmallow pymysql
+9) 
