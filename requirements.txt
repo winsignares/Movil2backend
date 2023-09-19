@@ -11,6 +11,11 @@ MarkupSafe==2.1.3
 marshmallow==3.20.1
 packaging==23.1
 PyMySQL==1.1.0
+<<<<<<< HEAD
 SQLAlchemy==2.0.21
 typing_extensions==4.8.0
+=======
+SQLAlchemy==2.0.20
+typing_extensions==4.7.1
+>>>>>>> c492f617db165730860e61fb8606313472b4d802
 Werkzeug==2.3.7
