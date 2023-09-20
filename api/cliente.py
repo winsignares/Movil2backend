@@ -12,3 +12,11 @@ def cliente():
     resultall = Cliente.query.all() #Select * from Clientes
     resultado_cliente= clientes_schema.dump(resultall)
     return jsonify(resultado_cliente)
+
+@ruta_clientes.route('/savecliente', methods=['POST'])
+def save():
+    nombre = request.json['nombre']
+    new_cliente = Cliente(nombre)
+    db.session.add(new_cliente)
+    db.session.commit()    
+    return "datos guardado con exito"
