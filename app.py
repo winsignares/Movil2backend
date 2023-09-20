@@ -1,8 +1,10 @@
 from flask import Flask
 from config.db import  db, ma, app
 from api.cliente import ruta_clientes
+from api.reserva import ruta_reserva
 
 app.register_blueprint(ruta_clientes,url_prefix = '/api')
+app.register_blueprint(ruta_reserva, url_prefix = '/api')
 
 @app.route('/')
 def index():
