@@ -4,7 +4,7 @@ class Reserva(db.Model):
     __tablename__ = "tblreserva"
 
     id = db.Column(db.Integer, primary_key =True)
-    idcliente = db.Column(db.Integer, db.Foreign('tblcliente.id'))
+    idcliente = db.Column(db.Integer, db.ForeignKey('tblcliente.id'))
 
     def __init__(self, idcliente) :
        self.idcliente = idcliente
