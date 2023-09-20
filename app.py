@@ -2,9 +2,11 @@ from flask import Flask
 from config.db import  db, ma, app
 from api.cliente import ruta_clientes
 from api.reserva import ruta_reservas
+from api.ciudad import ruta_ciudades
 
 app.register_blueprint(ruta_clientes,url_prefix = '/api')
 app.register_blueprint(ruta_reservas, url_prefix = '/api')
+app.register_blueprint(ruta_ciudades, url_prefix = '/api')
 
 @app.route('/')
 def index():
