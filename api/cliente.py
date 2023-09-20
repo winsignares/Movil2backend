@@ -25,10 +25,14 @@ def save():
 def Update():
     id = request.json['id']
     nombre = request.json['nombre']
-    vcliente = Cliente.query.get(id)
-    Cliente.nombre = nombre
-    db.session.commit()
-    return "Datos actualizado con exitos"
+    cliente = Cliente.query.get(id)   
+    if cliente :
+        print(cliente) 
+        cliente.nombre = nombre
+        db.session.commit()
+        return "Datos actualizado con exitos"
+    else:
+        return "Error"
 
 @ruta_clientes.route('/deletecliente/<id>', methods=['GET'])
 def eliminar(id):
