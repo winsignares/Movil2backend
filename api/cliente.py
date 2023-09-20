@@ -20,3 +20,19 @@ def save():
     db.session.add(new_cliente)
     db.session.commit()    
     return "datos guardado con exito"
+
+@ruta_clientes.route('/updatecliente', methods=['PUT'])
+def Update():
+    id = request.json['id']
+    nombre = request.json['nombre']
+    vcliente = Cliente.query.get(id)
+    Cliente.nombre = nombre
+    db.session.commit()
+    return "Datos actualizado con exitos"
+
+@ruta_clientes.route('/deletecliente/<id>', methods=['GET'])
+def eliminar(id):
+    cliente = Cliente.query.get(id)
+    db.session.delete(cliente)
+    db.session.commit()
+    return jsonify(cliente_schema.dump(cliente))
