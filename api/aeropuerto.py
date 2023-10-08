@@ -21,3 +21,22 @@ def save():
     db.session.commit()
     return "Datos guardados con exito"
 
+@ruta_aeropuestos.route('/updateaeropuerto', methods=['PUT'])
+def update():
+    id = request.json['id']
+    nombre = request.json['nombre']
+    aeropuerto = Aeropuerto.query.get(id)   
+    if aeropuerto :
+        print(aeropuerto) 
+        aeropuerto.nombre = nombre
+        db.session.commit()
+        return "Datos actualizado con exitos"
+    else:
+        return "Error"
+
+@ruta_aeropuertos.route('/deleteaeropuerto/<id>', methods=['GET'])
+def eliminar(id):
+    aeropuerto = Aeropuerto.query.get(id)
+    db.session.delete(aeropuerto)
+    db.session.commit()
+    return jsonify(aeropuerto_schema.dump(aeropuerto))
