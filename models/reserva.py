@@ -7,15 +7,17 @@ class Reserva(db.Model):
     idcliente = db.Column(db.Integer, db.ForeignKey('tblcliente.id'))
     idavion = db.Column(db.Integer, db.ForeignKey('tblavion'))
     idciudad = db.Column(db.Integer, db.ForeignKey('tblciudad'))
+    n_cliente = db.Column(db.String(50))
 
-    def __init__(self, idavion, idcliente, idciudad) :
+    def __init__(self, idavion, idcliente, idciudad, n_cliente) :
        self.idcliente = idcliente
        self.idavion = idavion
        self.idciudad = idciudad
+       self.n_cliente = n_cliente
 
 with app.app_context():
     db.create_all()
 
 class ReservasSchema(ma.Schema):
     class Meta:
-        fields = ('id','idcliente', 'idavion','idciudad')
+        fields = ('id','idcliente', 'idavion','idciudad', 'n_cliente')

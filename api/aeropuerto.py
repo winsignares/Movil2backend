@@ -12,3 +12,12 @@ def aeropuerto():
     resultall = Aeropuerto.query.all()
     resultado_aeropuerto = aeropuestos_schema(resultall)
     return jsonify(resultado_aeropuerto)
+
+@ruta_aeropuestos.route('/saveaeropuerto', methods=['POST'])
+def save():
+    nombre = request.json['nombre']
+    new_aeropuerto = Aeropuerto(nombre)
+    db.session.add(new_aeropuerto)
+    db.session.commit()
+    return "Datos guardados con exito"
+
