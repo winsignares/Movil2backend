@@ -16,21 +16,30 @@ def cliente():
 @ruta_clientes.route('/savecliente', methods=['POST'])
 def save():
     nombre = request.json['nombre']
-    new_cliente = Cliente(nombre)
+    apellido = request.json['apellido']
+    email = request.json['email']
+    telefono = request.json['telefono']
+    new_cliente = Cliente(nombre, apellido, email, telefono)
     db.session.add(new_cliente)
     db.session.commit()    
-    return "datos guardado con exito"
+    return "Datos guardados con éxito"
 
 @ruta_clientes.route('/updatecliente', methods=['PUT'])
 def Update():
     id = request.json['id']
     nombre = request.json['nombre']
+    apellido = request.json['apellido']
+    email = request.json['email']
+    telefono = request.json['telefono']
     cliente = Cliente.query.get(id)   
     if cliente :
         print(cliente) 
         cliente.nombre = nombre
+        cliente.apellido = apellido
+        cliente.email = email
+        cliente.telefono = telefono
         db.session.commit()
-        return "Datos actualizado con exitos"
+        return "Datos actualizados con éxitos"
     else:
         return "Error"
 
