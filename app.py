@@ -50,7 +50,7 @@ def consultaaereo():
             'ciudad':ciudades.nombre,
             'departamento':ciudades.departamento,
             'aerepuerto': aeropuertos.nombre,
-            'aerepuerto': aeropuertos.dirección
+            'direccion': aeropuertos.dirección
         }
     return datos
 
