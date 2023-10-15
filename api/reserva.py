@@ -15,16 +15,13 @@ def reserva():
 
 @ruta_reservas.route('/savereserva', methods=['POST'])
 def save():
-    idcliente = request.json ['idcliente']
-    fecha_reserva = request.json ['fecha_reserva']
-    fecha_viaje = request.json ['fecha_viaje']
-    estado_reserva = request.json ['estado_reserva']
-    num_asiento = request.json ['num_asiento']
-    tipo_asiento = request.json ['tipo_asiento']
-    precio =  request.json ['precio']
-    vuelo = request.json ['vuelo']
-    metodo_pago =  request.json ['metodo_pago']
-    new_reserva = Reserva(idcliente,fecha_reserva,fecha_viaje,estado_reserva,num_asiento,tipo_asiento,precio,vuelo,metodo_pago)
+    ciudad_origen = request.json ['ciudad_origen'] 
+    ciudad_destino = request.json ['ciudad_destino'] 
+    dir_origen = request.json ['dir_origen'] 
+    dir_destino = request.json ['dir_destino'] 
+    preferencias = request.json ['preferencias']  
+    fecha = request.json ['fecha'] 
+    new_reserva = Reserva(ciudad_origen,ciudad_destino,dir_origen,dir_destino,preferencias,fecha)
     db.session.add(new_reserva)
     db.session.commit()    
     return "Datos guardados con éxito"
@@ -32,27 +29,21 @@ def save():
 @ruta_reservas.route('/updatereserva', methods=['PUT'])
 def Update():
     id = request.json['id']
-    idcliente = request.json ['idcliente']
-    fecha_reserva = request.json ['fecha_reserva']
-    fecha_viaje = request.json ['fecha_viaje']
-    estado_reserva = request.json ['estado_reserva']
-    num_asiento = request.json ['num_asiento']
-    tipo_asiento = request.json ['tipo_asiento']
-    precio =  request.json ['precio']
-    vuelo = request.json ['vuelo']
-    metodo_pago =  request.json ['metodo_pago']
+    ciudad_origen = request.json ['ciudad_origen'] 
+    ciudad_destino = request.json ['ciudad_destino'] 
+    dir_origen = request.json ['dir_origen'] 
+    dir_destino = request.json ['dir_destino'] 
+    preferencias = request.json ['preferencias']  
+    fecha = request.json ['fecha'] 
     reserva = Reserva.query.get(id)   
     if reserva :
         print(reserva) 
-        reserva.idcliente = idcliente
-        reserva. fecha_reserva = fecha_reserva
-        reserva.fecha_viaje = fecha_viaje
-        reserva.estado_reserva = estado_reserva
-        reserva.num_asiento = num_asiento
-        reserva.tipo_asiento = tipo_asiento
-        reserva.precio = precio
-        reserva.vuelo = vuelo
-        reserva.metodo_pago = metodo_pago
+        reserva.ciudad_origen = ciudad_origen
+        reserva.ciudad_destinob = ciudad_destino
+        reserva.dir_origen = dir_origen
+        reserva.dir_destino = dir_destino
+        reserva.preferencias = preferencias
+        reserva.fecha = fecha
         db.session.commit()
         return "Datos actualizados con éxitos"
     else:
